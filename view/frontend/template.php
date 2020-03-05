@@ -9,9 +9,12 @@
     </head>
         
     <body>
+
        <div class="site-content">
        	<?= $content ?>
+        <?php include (VIEW.'frontend/footer.php'); ?>
        	</div>
         <script src="public/js/diapo.js"></script>
+
     </body>
 </html>

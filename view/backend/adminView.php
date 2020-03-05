@@ -1,7 +1,6 @@
 <?php ob_start(); ?>
 <?php include(VIEW.'frontend/menu.php'); ?>
 <div class="espace_admin">
-
     <h2 class="text-dark text-left bienvenu">Bienvenue <?= $_SESSION['admin'] ?></h2>
     
     <h1 class="titre_admin text-dark">Espace administration</h1>
@@ -85,6 +84,6 @@
 
     ?>
 </div>
-<?php include (VIEW.'frontend/footer.php'); ?>
+
 <?php $content = ob_get_clean(); ?>
 <?php require (VIEW.'frontend/template.php'); ?>

@@ -1,11 +1,6 @@
 <?php
-
 class Backend
 {  
-    public function connect()
-    {
-        require (VIEW.'backend/adminLoginView.php');
-    }
     
     public function adminIndex()
     {
@@ -19,28 +14,10 @@ class Backend
         require(VIEW.'backend/adminView.php');
         
     }
-    public function login($username, $password)
-    {
-
-        $loginManager = new LoginManager();
-        $login = $loginManager->getUser($username, $password);
-
-        if($login)
-        {
-            
-            $_SESSION['admin'] = $_POST['username'];
-             header('Location: index.php?action=adminIndex');
-        }    
-        else
-        {
-            throw new Exception("Le nom ou le mot de passe est incorect");
-            
-        }    
-
-    }
 
     public function disconnect()
     {
+        
          session_destroy();
          header('Location: index.php');
 

@@ -1,8 +1,8 @@
  <?php
 
- session_start();
  include_once('_config.php');
  Autoloader::register();
- require_once(ROUTER.'Router.php');
+ require_once(APP.'Router.php');
 $routeur = new Routeur();
 $routeur->route();
+

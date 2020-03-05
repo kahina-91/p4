@@ -1,8 +1,8 @@
 <?php 
-require_once('Session.php');
 
-class Frontend extends Controller {
-    //public $limite = 10;
+class Frontend extends Controller 
+{
+    
     public function listPosts() 
     {
 
@@ -14,8 +14,8 @@ class Frontend extends Controller {
     public function allPosts()
     {
         
-            $ma = new PostManager();
-            $allPosts = $ma->getAllPosts();
+        $ma = new PostManager();
+        $allPosts = $ma->getAllPosts();
         $all = $allPosts;
 
         require(VIEW.'frontend/AllPosts.php');
@@ -49,7 +49,28 @@ class Frontend extends Controller {
        }
    }
 
-    
+    public function connect()
+    {
+        require (VIEW.'backend/adminLoginView.php');
+    }
+    public function login($username, $password)
+    {
+
+        $loginManager = new LoginManager();
+        $login = $loginManager->getUser($username, $password);
+
+        if($login)
+        {
+            $_SESSION['admin']= $_POST['username'];
+             header('Location: index.php?action=adminIndex');
+        }    
+        else
+        {
+            throw new Exception("Le nom ou le mot de passe est incorect");
+            
+        }    
+
+    }
     public function addComment($postId, $author, $comment, $flag)
     {
         $mod = new CommentManager();
@@ -59,16 +80,18 @@ class Frontend extends Controller {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         }
         else {
+            $this->session->setFlash('Commentaire publié!');
             header('Location: index.php?action=pagin&id='. $postId);
         }
 
     }
     public function flagComment($commentId)
     {
-
+        
         $commentManager = new CommentManager();
         $flag = $commentManager->flagComment($commentId);
         $this->session->setFlash('Le commentaire est signalé');
+
         header("Location: index.php?action=pagin&id=" .$_GET['postId']);
 
     }

@@ -11,10 +11,10 @@ class Autoloader{
 		define('HOST', 'http://'.$host.'/projet4/');
 		define('ROOT', $root.'/projet4/');
 
-		define('CONTROLLER', ROOT.'controller/');
+		define('CONTROLLER', ROOT.'Controllers/');
 		define('VIEW', ROOT.'view/');
 		define('MODEL', ROOT.'model/');
-		define('ROUTER', ROOT.'router/');
+		define('APP', ROOT.'app/');
 		define('ISSET', ROOT.'public/');
 		
 		spl_autoload_register(array(__CLASS__, 'autoload'));
@@ -32,9 +32,9 @@ class Autoloader{
 		{
 			include_once (CONTROLLER.$class.'.php');
 		}
-		else if(file_exists(ROUTER.$class.'.php'))
+		else if(file_exists(APP.$class.'.php'))
 		{
-			include_once (ROUTER.$class.'.php');
+			include_once (APP.$class.'.php');
 		}
 		
     	

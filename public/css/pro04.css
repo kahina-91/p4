@@ -1,5 +1,5 @@
 body{
-	/*background-color: #DDD!important;*/
+	
 	width: 100%;
 	color: black!important;
 	background: url('../images/winte.jpg')!important;
@@ -18,6 +18,10 @@ form input:focus
    text-align: center;
    padding: 10px;
 
+}
+.flash-message{
+	background-color: red!important;
+	width: 400px;
 }
 .act{
 	

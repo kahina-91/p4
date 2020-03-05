@@ -7,11 +7,15 @@ class Session
 	
 	public function __construct()
 	{
-		session_start();
+		//if(empty(session_id())){
+			session_start();
+		//}
+		
 	}
 	public function setFlash($message)
 	{
 		$_SESSION['flash'] = $message;
+		
 	}
 	public function getFlash()
 	{

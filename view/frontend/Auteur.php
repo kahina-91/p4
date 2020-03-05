@@ -20,6 +20,6 @@
             Il se marie avec l’animatrice Faustine Bollaert en août 2012 et il est maintenant papa.
         </p>
  </div>       
-<?php include 'footer.php'; ?>
+
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

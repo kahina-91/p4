@@ -18,7 +18,7 @@ class Routeur{
 					break;
 				
 				case 'connect':
-					$back->connect();
+					$front->connect();
 					break;
 
 				case 'allPosts':
@@ -30,7 +30,7 @@ class Routeur{
 						{
 							if (!empty(htmlspecialchars($_POST['username'])) && !empty(htmlspecialchars($_POST['password'])))
 						    {
-						    	$back->login($_POST['username'], sha1($_POST['password']));
+						    	$front->login($_POST['username'], sha1($_POST['password']));
 						    }else
 						    {
 						    	throw new Exception("remplissez les champs");
@@ -72,7 +72,6 @@ class Routeur{
                     break;
 				case 'update':
 				    $back->update($_POST['title'], $_POST['content'], $_GET['id']);
-						var_dump("l'article as bien été modifié");
 					break;
 				case 'delete':
 					$back->deletePost();
@@ -112,6 +111,7 @@ class Routeur{
 		            }
 		            break;
 		        case 'flagComment': 
+
 					$front->flagComment($_GET['commentId']);
 
 					break;

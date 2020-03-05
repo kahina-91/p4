@@ -11,7 +11,6 @@
     <input type="submit" class="text-center btn"/>
     </form>
 </div>
-<?php include (VIEW.'frontend/footer.php'); ?>
 <?php $content = ob_get_clean(); ?>
 <?php require (VIEW.'frontend/template.php'); ?>
 

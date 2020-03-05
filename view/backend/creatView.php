@@ -23,6 +23,5 @@
 <script src="https://cdn.tiny.cloud/1/36r7arq0jnxbsnzf2bqw6ybr6c6jj21776jivbuqkdyucps8/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>tinymce.init({ selector:'textarea' });</script>
 
-<?php include (VIEW.'frontend/footer.php'); ?>
 <?php $content = ob_get_clean(); ?>
 <?php require (VIEW.'frontend/template.php'); ?>

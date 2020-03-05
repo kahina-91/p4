@@ -1,10 +1,11 @@
 <?php $session = new Session();?>
 <!--affichage d'un billet et ses commentaires--> 
 
+
+<?php ob_start();?>
 <?php include 'menu.php'; 
 ?>
-<?php ob_start();?>
- <?php if($message = $session->getFlash():?> 
+ <?php if($message = $session->getFlash()): ?> 
     <div class="flash-message">
        <?= $message ;?>
     </div>
@@ -99,4 +100,4 @@
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
-<?php include 'footer.php' ?>
+

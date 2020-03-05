@@ -22,6 +22,6 @@
 	<?php $posts->closeCursor(); ?>
 </div>
 
-<?php include 'footer.php'; ?>
+
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>
