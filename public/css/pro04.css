@@ -20,8 +20,13 @@ form input:focus
 
 }
 .flash-message{
-	background-color: red!important;
-	width: 400px;
+	background-color: #90EE90;
+	opacity: 0.8;
+	text-align: center;
+	margin: auto;
+	font-size: 20px;
+	border-radius: 10px;
+	padding: 10px;
 }
 .act{
 	

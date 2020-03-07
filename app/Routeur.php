@@ -1,28 +1,31 @@
 <?php
 
-ini_set('display_errors','on');
-error_reporting(E_ALL);
-
 class Routeur{
+	private $front;
+	private $back;
+	public function __construct()
+	{
+		$this->front = new Frontend();
+		$this->back = new Backend();
+	}
 	public function route()
 	{
 		(isset($_GET['action'])) ? $action = $_GET['action'] : $action = "listPosts" ;
 
 		try 
 		{
-			$front = new Frontend();
-			$back = new Backend();
+			
 			switch($action) {
 				case 'listPosts':
-					$front->listPosts();
+					$this->front->listPosts();
 					break;
 				
 				case 'connect':
-					$front->connect();
+					$this->front->connect();
 					break;
 
 				case 'allPosts':
-					$front->allPosts();
+					$this->front->allPosts();
 					break;
 
 				case 'login':
@@ -30,7 +33,7 @@ class Routeur{
 						{
 							if (!empty(htmlspecialchars($_POST['username'])) && !empty(htmlspecialchars($_POST['password'])))
 						    {
-						    	$front->login($_POST['username'], sha1($_POST['password']));
+						    	$this->front->login($_POST['username'], sha1($_POST['password']));
 						    }else
 						    {
 						    	throw new Exception("remplissez les champs");
@@ -44,50 +47,50 @@ class Routeur{
 					
 					break;
                 case 'adminIndex':
-					$back->adminIndex();
+					$this->back->adminIndex();
 					break;
 				case 'disconnect':
-					$back->disconnect();
+					$this->back->disconnect();
 					break;
 
 				case 'auteur':
-					$front->auteur();
+					$this->front->auteur();
 					break;
                 
                 case 'edit':
                     if (isset($_GET['id']) && $_GET['id'] > 0) 
                     {
-                    	$back->edit();
+                    	$this->back->edit();
                     }
 					
 					break;
                 
                 case 'post':
-					$front->post();
+					$this->front->post();
 					break;
 
                 case 'pagin':
                 
-                	$front->pagin();
+                	$this->front->pagin();
                     break;
 				case 'update':
-				    $back->update($_POST['title'], $_POST['content'], $_GET['id']);
+				    $this->back->update($_POST['title'], $_POST['content'], $_GET['id']);
 					break;
 				case 'delete':
-					$back->deletePost();
+					$this->back->deletePost();
 					break;
                 
                 case 'deleteComment':
-					$back->deleteComment();
+					$this->back->deleteComment();
 					break;
 
 				case 'creatPost':
-					$back->creatPost();
+					$this->back->creatPost();
 					break;
 				case 'insertPost':   
 					if (!empty($_POST['title']) && !empty($_POST['content'])) 
 					{
-						$back->insertPost($_POST['title'], $_POST['content']);
+						$this->back->insertPost($_POST['title'], $_POST['content']);
 						var_dump("l'article as bien été ajouté");
 					
 				    }else {
@@ -100,7 +103,7 @@ class Routeur{
 		            if (isset($_GET['id']) && $_GET['id'] > 0) {
 		                if (!empty($_POST['author']) && !empty($_POST['comment'])) 
 		                {
-		                    $front->addComment($_GET['id'], $_POST['author'], $_POST['comment'], '0');
+		                    $this->front->addComment($_GET['id'], $_POST['author'], $_POST['comment'], '0');
 		                }
 		                else {
 		                    throw new Exception('Tous les champs ne sont pas remplis !');
@@ -112,11 +115,11 @@ class Routeur{
 		            break;
 		        case 'flagComment': 
 
-					$front->flagComment($_GET['commentId']);
+					$this->front->flagComment($_GET['commentId']);
 
 					break;
 				case 'annulflag':
-					$back->annulflag($_GET['commentId']);
+					$this->back->annulflag($_GET['commentId']);
 					break;
 				default:
 					echo "erreur 404";

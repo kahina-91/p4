@@ -1,16 +1,13 @@
-<?php $session = new Session();?>
+
 <!--affichage d'un billet et ses commentaires--> 
-
-
 <?php ob_start();?>
-<?php include 'menu.php'; 
-?>
- <?php if($message = $session->getFlash()): ?> 
-    <div class="flash-message">
-       <?= $message ;?>
-    </div>
- <?php endif;?>
-<div class="onePost">
+<?php include 'menu.php'; ?>
+<div class="onePost"> 
+    <?php if($session->hasFlash()): ?> 
+        <div class="flash-message">
+           <?= $session->getFlash() ;?>
+        </div>
+    <?php endif;?>
     <p><a class="text-secondary retour" href="index.php"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a></p>
     <div>
         <h2>

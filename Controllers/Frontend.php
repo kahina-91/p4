@@ -23,29 +23,31 @@ class Frontend extends Controller
     }
    
    public function pagin()
-   {    if (isset($_GET['id']) && $_GET['id'] > 0) {
+   {  
+        $session = $this->session;
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
             $manager = new PostManager();
             $posts = $manager->getAllPosts()->fetchAll();
             $po = count($posts);
 
             $commentManag = new CommentManager();
         
-        if (isset($_GET['direction']))
-        {
-            $direction = $_GET['direction'];
-        }else
-        {
-            $direction = null; 
-        } 
+            if (isset($_GET['direction']))
+            {
+                $direction = $_GET['direction'];
+            }else
+            {
+                $direction = null; 
+            } 
 
-        $post = $manager->getPost($_GET['id'], $direction);
+            $post = $manager->getPost($_GET['id'], $direction);
 
-        $comments = $commentManag->getComments($_GET['id']);
-        
-        require(VIEW.'frontend/postView.php');
+            $comments = $commentManag->getComments($_GET['id']);
+            
+            require(VIEW.'frontend/postView.php');
         }else{
             echo 'Erreur : aucun identifiant de billet envoyé';
-            
+                
        }
    }
 
@@ -87,11 +89,9 @@ class Frontend extends Controller
     }
     public function flagComment($commentId)
     {
-        
         $commentManager = new CommentManager();
         $flag = $commentManager->flagComment($commentId);
         $this->session->setFlash('Le commentaire est signalé');
-
         header("Location: index.php?action=pagin&id=" .$_GET['postId']);
 
     }

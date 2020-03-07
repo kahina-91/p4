@@ -4,17 +4,15 @@
  */
 class Session
 {
-	
-	public function __construct()
+	public function hasFlash()
 	{
-		//if(empty(session_id())){
-			session_start();
-		//}
-		
+		if(isset($_SESSION['flash'])) return true;
+		return false;
 	}
 	public function setFlash($message)
 	{
 		$_SESSION['flash'] = $message;
+		return $this;
 		
 	}
 	public function getFlash()
